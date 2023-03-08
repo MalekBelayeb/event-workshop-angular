@@ -1,0 +1,42 @@
+<form>
+
+    <div style="height: 40vh; display: flex;flex-direction: column;justify-content: start;align-items: flex-start;margin-top: 32px;">
+
+        <div style="width: 100%;">
+            <mat-form-field style="width: 100%;" appearance="outline">
+                <mat-label>Enter your email</mat-label>
+                <input matInput placeholder="pat@example.com" required>
+            </mat-form-field>
+        </div>
+
+        <div style="width: 100%;">
+            <mat-form-field style="width: 100%;" appearance="outline">
+                <mat-label>Enter your password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon> {{ hide ? 'visibility_off' : 'visibility'}} </mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+
+        <div style="width: 100%;">
+            <mat-form-field style="width: 100%;" appearance="outline">
+                <mat-label>Enter your firstname</mat-label>
+                <input matInput placeholder="Firstname" required>
+            </mat-form-field>
+        </div>
+
+        <div style="width: 100%;">
+            <mat-form-field style="width: 100%;" appearance="outline">
+                <mat-label>Enter your lastname</mat-label>
+                <input matInput placeholder="Lastname" required>
+            </mat-form-field>
+        </div>
+
+        <div style="align-self: flex-end;width: 30%;">
+            <button mat-flat-button style="width: 100%;" color="primary">Register</button>
+        </div>
+    </div>
+
+
+</form>
