@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ErrorPageComponent } from './error-page/error-page.component';
-import { HomeComponent } from './home/home.component';
-import { RegisterComponent } from './authentification/register/register.component';
-import { AuthentificationComponent } from './authentification/authentification.component';
+import { ErrorPageComponent } from './view/error-page/error-page.component';
+import { HomeComponent } from './view/home/home.component';
+import { RegisterComponent } from './view/authentification/register/register.component';
+import { AuthentificationComponent } from './view/authentification/authentification.component';
+import { UserAuthGuard } from './guard/user-auth.guard';
+import { CreateEventComponent } from './view/create-event/create-event.component';
 
 const routes: Routes = [
   
   {path: '', redirectTo:'/home',pathMatch:'full'},
-  {path: 'auth', component:AuthentificationComponent},
-  {path: 'register',component:RegisterComponent},
-  {path: 'home',component:HomeComponent},
+  {path: 'auth', component:AuthentificationComponent,canActivate:[UserAuthGuard]},
+  {path: 'event/create',component:CreateEventComponent,canActivate:[UserAuthGuard]},
+  {path: 'home',component:HomeComponent,canActivate:[UserAuthGuard]},
   {path: '**',component:ErrorPageComponent},
 
 ];
