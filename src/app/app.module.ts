@@ -2,7 +2,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './view/shared/header/header.component';
@@ -34,6 +34,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ExternModuleModule } from './extern-module/extern-module.module';
+import { SessionHandlerInterceptor } from './service/interceptors/session-handler.interceptor';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,7 @@ import { ExternModuleModule } from './extern-module/extern-module.module';
     MatSnackBarModule,
     ExternModuleModule
   ],
-  providers: [],
+  providers: [{provide:HTTP_INTERCEPTORS,useClass:SessionHandlerInterceptor,multi:true}],
   bootstrap: [AppComponent]
 })
 

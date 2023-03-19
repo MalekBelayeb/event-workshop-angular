@@ -1,11 +1,11 @@
 <form [formGroup]="formBuilderGroup" (ngSubmit)="signUp()">
 
-    <div style="height: 40vh; display: flex;flex-direction: column;justify-content: start;align-items: flex-start;margin-top: 32px;">
+    <div style="display: flex;flex-direction: column;justify-content: start;align-items: flex-start;margin-top: 32px;">
 
         <div style="width: 100%;">
             <mat-form-field style="width: 100%;" appearance="outline">
                 <mat-label>Enter your email</mat-label>
-                <input formControlName="email" ngModel matInput placeholder="pat@example.com" required>
+                <input formControlName="email" ngModel matInput>
                 <mat-error *ngIf="submitted && f.email.errors?.required">Email is required</mat-error>
                 <mat-error *ngIf="submitted && f.email.errors?.email">Email format is invalid</mat-error>
 
@@ -15,7 +15,7 @@
         <div style="width: 100%;">
             <mat-form-field style="width: 100%;" appearance="outline">
                 <mat-label>Enter your password</mat-label>
-                <input formControlName="password" ngModel matInput>
+                <input formControlName="password" type="password" ngModel matInput>
                 <mat-error *ngIf="submitted && f.password.errors?.required">Password is required</mat-error>
 
             </mat-form-field>
@@ -24,7 +24,7 @@
         <div style="width: 100%;">
             <mat-form-field style="width: 100%;" appearance="outline">
                 <mat-label>Enter your firstname</mat-label>
-                <input formControlName="firstname" ngModel matInput placeholder="Firstname" required>
+                <input formControlName="firstname" ngModel matInput placeholder="Firstname">
                 <mat-error *ngIf="submitted && f.firstname.errors?.required">Firstname is required</mat-error>
                 <mat-error *ngIf="submitted && f.firstname.errors?.minlength">Firstname is invalid</mat-error>
             </mat-form-field>
@@ -33,7 +33,7 @@
         <div style="width: 100%;">
             <mat-form-field style="width: 100%;" appearance="outline">
                 <mat-label>Enter your lastname</mat-label>
-                <input formControlName="lastname" ngModel matInput placeholder="Lastname" required>
+                <input formControlName="lastname" ngModel matInput placeholder="Lastname">
                 <mat-error *ngIf="submitted && f.lastname.errors?.required">Lastname is required</mat-error>
                 <mat-error *ngIf="submitted && f.lastname.errors?.minlength">Lastname is invalid</mat-error>
 

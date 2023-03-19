@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -19,6 +19,8 @@ export class RegisterComponent implements OnInit {
   submitted:boolean = false
   isLoading:boolean = false 
 
+  @Output() didSuccessfullyRegistred = new EventEmitter<VoidFunction>() 
+
   ngOnInit(): void {
   
     this.formBuilderGroup = this.formBuilder.group({
@@ -29,7 +31,6 @@ export class RegisterComponent implements OnInit {
       password:new FormControl('',[Validators.required])
 
     })
-
   }
 
   get f() { return this.formBuilderGroup.controls; }
@@ -48,10 +49,10 @@ export class RegisterComponent implements OnInit {
     let data = { email:this.formBuilderGroup.get('email').value,firstname:this.formBuilderGroup.get('firstname').value,lastname:this.formBuilderGroup.get('lastname').value,password:this.formBuilderGroup.get('password').value }
     
     this.httpClient.sendRequest(Config.signUpUsertUrl,{method:HttpMethod.POST,data}).subscribe({next:response=>{
+      
+      this.snackbar.open(response.body.message,"Login",{duration:4000}).dismissWithAction = ()=>{
 
-      this.snackbar.open(response.body.message,"Continue",{duration:4000}).dismissWithAction = ()=>{
-
-        //this.router.navigate(['/','auth'])
+        this.didSuccessfullyRegistred.emit()
 
       }
 
@@ -63,7 +64,10 @@ export class RegisterComponent implements OnInit {
     },complete:()=>{
 
       this.isLoading = false 
-
+      this.submitted = false;
+      (document.querySelector("form") as HTMLFormElement).reset()
+    
+    
     }})
  
   }

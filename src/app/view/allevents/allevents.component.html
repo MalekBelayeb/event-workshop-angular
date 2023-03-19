@@ -2,7 +2,7 @@
 
     <div style="align-self: flex-start;margin-left: 15%;padding-bottom: 1%;width: 70%;">
         <div style="display: flex;justify-content: space-between;width: 100%;">
-            <h2>All events (3)</h2>
+            <h2> All events ({{totalSize}}) </h2>
             <button routerLink="/event/create" mat-button color="primary">Create a new event</button>
         </div>
 
@@ -33,12 +33,12 @@
 
                 <ng-container matColumnDef="startDate">
                     <mat-header-cell *matHeaderCellDef> Start date </mat-header-cell>
-                    <mat-cell *matCellDef="let row"> {{row.startDate}} </mat-cell>
+                    <mat-cell *matCellDef="let row"> {{row.startDate | date: 'dd/MM/yyyy'}} </mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="endDate">
                     <mat-header-cell *matHeaderCellDef> End date </mat-header-cell>
-                    <mat-cell *matCellDef="let row"> {{row.endDate}} </mat-cell>
+                    <mat-cell *matCellDef="let row"> {{row.endDate | date: 'dd/MM/yyyy'}} </mat-cell>
                 </ng-container>
 
                 <mat-header-row *matHeaderRowDef="['cover','name','organizer', 'startDate', 'endDate']"></mat-header-row>
@@ -46,7 +46,7 @@
 
             </mat-table>
 
-            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+            <mat-paginator [length]="totalSize" [pageIndex]="pageIndex" (page)="onChangePage($event)" [pageSizeOptions]=" [5, 10, 20] " showFirstLastButtons aria-label="Select page of periodic elements ">
             </mat-paginator>
 
         </div>

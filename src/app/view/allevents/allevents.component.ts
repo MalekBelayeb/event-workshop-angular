@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { Observable } from 'rxjs';
 import { Config } from 'src/app/config';
 import { HttpClientService, HttpMethod } from 'src/app/service/http-client.service';
@@ -14,21 +15,29 @@ export class AlleventsComponent implements OnInit {
 
   isLoading:boolean = false 
 
+  totalSize = 10
+  pageIndex = 0
   dataSource:any = []                 
 
   ngOnInit(): void {
     this.getAllEvents()
   }
 
-  getAllEvents()
+  onChangePage(page:PageEvent)
+  {
+
+    this.pageIndex = page.pageIndex
+    this.getAllEvents(page.pageIndex,page.pageSize)
+    
+  }
+
+  getAllEvents(page:number = 0,pageSize:number = 5)
   {
 
     this.isLoading = true 
   
-    this.httpClient.sendRequest(Config.getEventstUrl,{method:HttpMethod.GET,useToken:true}).subscribe({next:(response)=>{
-
-      console.log(response.body.events)
-
+    this.httpClient.sendRequest(`${Config.getEventstUrl}?page=${page}&pageSize=${pageSize}`,{method:HttpMethod.GET,useToken:true}).subscribe({next:(response)=>{
+      this.totalSize = response.body.total
       this.dataSource = response.body.events.map((item:any)=>{
 
         var event:any = {}
