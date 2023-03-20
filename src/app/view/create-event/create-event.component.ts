@@ -4,12 +4,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Config } from 'src/app/config';
 import { HttpClientService, HttpMethod } from 'src/app/service/http-client.service';
 
-
 export const validDate: ValidatorFn = (control) =>
 {
 
   if(new Date(control.get('eventStartDate')?.value) > new Date(control.get('eventEndDate')?.value))
   {
+    
     
     let error = { 'validDate' : {reason:'end date must be greater than start date'}}
     
@@ -26,6 +26,7 @@ export const validDate: ValidatorFn = (control) =>
 
 }
 
+
 @Component({
   selector: 'app-create-event',
   templateUrl: './create-event.component.html',
@@ -35,9 +36,12 @@ export const validDate: ValidatorFn = (control) =>
 export class CreateEventComponent implements OnInit {
 
   constructor(private formBuilder:FormBuilder,private httpClient:HttpClientService,private snackbar:MatSnackBar) { }
+  
   formBuilderGroup: any
   submitted:boolean = false 
   isLoading:boolean = false 
+ 
+  
   ngOnInit(): void {
     
   this.formBuilderGroup = this.formBuilder.group({

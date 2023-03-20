@@ -16,11 +16,11 @@ export enum HttpMethod
 export class HttpClientService {
 
   constructor(private httpClient:HttpClient) { }
-  
+
   get headers():HttpHeaders{ 
       
     let token = localStorage.getItem('token')
-
+    
     return new HttpHeaders({
       "authorization":`Bearer ${token}`
     })
@@ -29,7 +29,7 @@ export class HttpClientService {
 
   sendRequest(url:string,{ method = HttpMethod.GET,useToken = false, data = {} } = {} ):Observable<any>
   {
-
+    
     switch(method)
     {
       case HttpMethod.GET:

@@ -35,20 +35,24 @@ export class AlleventsComponent implements OnInit {
   {
 
     this.isLoading = true 
-  
+    
     this.httpClient.sendRequest(`${Config.getEventstUrl}?page=${page}&pageSize=${pageSize}`,{method:HttpMethod.GET,useToken:true}).subscribe({next:(response)=>{
       this.totalSize = response.body.total
+      
       this.dataSource = response.body.events.map((item:any)=>{
-
+        
         var event:any = {}
+        event.isMine = localStorage.getItem("id") == item.organizer._id
+        event.id = item._id
         event.cover = `${Config.imageFolder}/${item.cover}`
         event.name = item.title
         event.organizer = `${item.organizer.firstname} ${item.organizer.lastname}`
         event.startDate = item.startDate
         event.endDate = item.endDate
+
         return event
       })
-  
+      
   
     },error:err=>{
 

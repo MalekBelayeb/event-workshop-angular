@@ -33,8 +33,11 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatCardModule } from '@angular/material/card';
+
 import { ExternModuleModule } from './extern-module/extern-module.module';
 import { SessionHandlerInterceptor } from './service/interceptors/session-handler.interceptor';
+import { EventDetailComponent } from './view/event-detail/event-detail.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +52,8 @@ import { SessionHandlerInterceptor } from './service/interceptors/session-handle
     AlleventsComponent,
     MyeventsComponent,
     MyprofileComponent,
-    CreateEventComponent
+    CreateEventComponent,
+    EventDetailComponent
     ],
   imports: [
     BrowserModule,
@@ -73,7 +77,8 @@ import { SessionHandlerInterceptor } from './service/interceptors/session-handle
     MatNativeDateModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
-    ExternModuleModule
+    ExternModuleModule,
+    MatCardModule
   ],
   providers: [{provide:HTTP_INTERCEPTORS,useClass:SessionHandlerInterceptor,multi:true}],
   bootstrap: [AppComponent]

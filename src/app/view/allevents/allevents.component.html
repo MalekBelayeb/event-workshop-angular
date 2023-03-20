@@ -41,8 +41,21 @@
                     <mat-cell *matCellDef="let row"> {{row.endDate | date: 'dd/MM/yyyy'}} </mat-cell>
                 </ng-container>
 
-                <mat-header-row *matHeaderRowDef="['cover','name','organizer', 'startDate', 'endDate']"></mat-header-row>
-                <mat-row *matRowDef="let row; columns: ['cover','name','organizer', 'startDate', 'endDate']"></mat-row>
+                <ng-container matColumnDef="action">
+
+                    <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+
+                    <mat-cell *matCellDef="let row">
+
+                        <button mat-button routerLink="/event/detail/{{row.id}}" color="secondary">View</button>
+                        <button mat-button routerLink="/event/detail/{{row.id}}" [disabled]="row.isMine" color="secondary">Edit</button>
+
+                    </mat-cell>
+
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="['cover','name','organizer', 'startDate', 'endDate','action']"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: ['cover','name','organizer', 'startDate', 'endDate','action']"></mat-row>
 
             </mat-table>
 

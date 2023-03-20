@@ -54,6 +54,8 @@ export class LoginComponent implements OnInit {
     this.httpClient.sendRequest(Config.signInUsertUrl,{method:HttpMethod.POST,data}).subscribe({next:response => {
       
       localStorage.setItem('token',response.body.token)
+      localStorage.setItem('id',response.body.user._id)
+      
       this.router.navigate(['/','home'])
 
     },error:err => {

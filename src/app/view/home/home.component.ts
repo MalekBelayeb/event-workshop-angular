@@ -6,6 +6,9 @@ import { Router } from '@angular/router';
 import { ExpireSessionHandlerService } from 'src/app/expire-session-handler.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+
+
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -20,9 +23,9 @@ export class HomeComponent implements OnInit {
   constructor(public dialog:MatDialog,private router:Router,private sessionExpireService:ExpireSessionHandlerService,private matSnackBar: MatSnackBar) { }
   
   tabOption:string = 'home'
-
+  
   ngOnInit(): void {
-
+    
     this.onUserSessionExpired()
     //this.parmurl=this.activatedroute.snapshot.params[‘id’];
   }
