@@ -1,13 +1,10 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
-import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialog} from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../dialog/confirm-dialog';
 import { Router } from '@angular/router';
-import { ExpireSessionHandlerService } from 'src/app/expire-session-handler.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
-
-
+import { ExpireSessionHandlerService } from 'src/app/guard/expire-session-handler.service';
 
 @Component({
   selector: 'app-home',
@@ -20,14 +17,18 @@ export class HomeComponent implements OnInit {
   @ViewChild('drawer') drawer?:MatDrawer
   //@ViewChild('dialog') logoutDialog:MatDialogRef
 
-  constructor(public dialog:MatDialog,private router:Router,private sessionExpireService:ExpireSessionHandlerService,private matSnackBar: MatSnackBar) { }
+  constructor(public dialog:MatDialog,private router:Router,private sessionExpireService:ExpireSessionHandlerService,private matSnackBar: MatSnackBar) { 
+
+    const state = this.router.getCurrentNavigation();
+    console.log(state?.extras.state)
+  }
   
   tabOption:string = 'home'
   
   ngOnInit(): void {
     
+    
     this.onUserSessionExpired()
-    //this.parmurl=this.activatedroute.snapshot.params[‘id’];
   }
 
   getActiveOption(option:string)
@@ -55,7 +56,7 @@ export class HomeComponent implements OnInit {
   onUserSessionExpired()
   {
 
-    this.sessionExpireService.isSessionExpired.subscribe({next:value =>{
+    this.sessionExpireService.isSessionExpired.subscribe({next:(value:any) =>{
       
       if(value)
       {

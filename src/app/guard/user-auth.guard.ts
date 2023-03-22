@@ -16,14 +16,16 @@ export class UserAuthGuard implements CanActivate {
       
       if(state.url == '/auth')
       {
+       
         if(localStorage.getItem('token') != '')
         {
-          this.router.navigate(['/','home'])
+          this.router.navigate(['/','home'],{state:{myVar:"gfffffffff"}})
           return false 
         }
 
       }else
       {
+        
         if(localStorage.getItem('token') == '')
         {  
           

@@ -14,10 +14,7 @@ import { ErrorPageComponent } from './view/error-page/error-page.component';
 import { AuthentificationComponent } from './view/authentification/authentification.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AlleventsComponent } from './view/allevents/allevents.component';
-import { MyeventsComponent } from './view/myevents/myevents.component';
-import { MyprofileComponent } from './view/myprofile/myprofile.component'; 
 import { CreateEventComponent } from './view/create-event/create-event.component';
-
 import {MatTabsModule} from '@angular/material/tabs'; 
 import {MatFormFieldModule} from '@angular/material/form-field'; 
 import {MatIconModule} from '@angular/material/icon'; 
@@ -34,8 +31,6 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
-
-import { ExternModuleModule } from './extern-module/extern-module.module';
 import { SessionHandlerInterceptor } from './service/interceptors/session-handler.interceptor';
 import { EventDetailComponent } from './view/event-detail/event-detail.component';
 
@@ -50,8 +45,6 @@ import { EventDetailComponent } from './view/event-detail/event-detail.component
     ErrorPageComponent,
     AuthentificationComponent,
     AlleventsComponent,
-    MyeventsComponent,
-    MyprofileComponent,
     CreateEventComponent,
     EventDetailComponent
     ],
@@ -77,7 +70,6 @@ import { EventDetailComponent } from './view/event-detail/event-detail.component
     MatNativeDateModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
-    ExternModuleModule,
     MatCardModule
   ],
   providers: [{provide:HTTP_INTERCEPTORS,useClass:SessionHandlerInterceptor,multi:true}],

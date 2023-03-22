@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck,OnChanges, SimpleChanges,AfterViewChecked, Input } from '@angular/core';
 import { FormBuilder,FormControl,Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -13,18 +13,35 @@ import { HttpClientService, HttpMethod } from 'src/app/service/http-client.servi
 
 
 
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnChanges,DoCheck,AfterViewChecked {
+
   
   hide = true;
   
-
-  
   constructor(private formBuilder:FormBuilder,private httpClient:HttpClientService, private snackbar:MatSnackBar,private router:Router) { }
   
-
   formBuilderGroup:any
   isLoading:boolean = false 
   submitted:boolean = false 
+
+  ngOnChanges(changes: SimpleChanges): void {
+      
+    console.log("ON CHANGES")
+  }
+
+  ngDoCheck(): void {
+    
+    console.log("ON DO CHECK")
+
+  }
+
+  ngAfterViewChecked(): void {
+      console.log("dsqdsdqsd")
+  }
+
+
+
+
 
   ngOnInit(): void {
 
@@ -39,11 +56,13 @@ export class LoginComponent implements OnInit {
 
   get f() { return this.formBuilderGroup.controls; }
 
+  
   signIn()
   {
 
     this.submitted = true 
     
+
     if (this.formBuilderGroup.invalid) {
       return;
     }
