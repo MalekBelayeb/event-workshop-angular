@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ExpireSessionHandlerService } from 'src/app/guard/expire-session-handler.service';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -19,8 +20,8 @@ export class HomeComponent implements OnInit {
 
   constructor(public dialog:MatDialog,private router:Router,private sessionExpireService:ExpireSessionHandlerService,private matSnackBar: MatSnackBar) { 
 
-    const state = this.router.getCurrentNavigation();
-    console.log(state?.extras.state)
+    //const state = this.router.getCurrentNavigation();
+    //console.log(state?.extras.state)
   }
   
   tabOption:string = 'home'

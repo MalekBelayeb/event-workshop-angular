@@ -16,7 +16,7 @@ export enum HttpMethod
 export class HttpClientService {
 
   constructor(private httpClient:HttpClient) { }
-
+  
   get headers():HttpHeaders{ 
       
     let token = localStorage.getItem('token')

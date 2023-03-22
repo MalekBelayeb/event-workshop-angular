@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Observable } from 'rxjs';
 import { Config } from 'src/app/config';
 import { HttpClientService, HttpMethod } from 'src/app/service/http-client.service';
+
 
 @Component({
   selector: 'app-allevents',
@@ -49,7 +50,7 @@ export class AlleventsComponent implements OnInit {
         event.organizer = `${item.organizer.firstname} ${item.organizer.lastname}`
         event.startDate = item.startDate
         event.endDate = item.endDate
-
+        
         return event
       })
       

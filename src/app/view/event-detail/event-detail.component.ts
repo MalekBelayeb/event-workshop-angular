@@ -18,9 +18,9 @@ export class EventDetailComponent implements OnInit {
   sampleRange: DateRange<Date> = new DateRange(new Date(),new Date());
 
   ngOnInit(): void {
-    
-		const state = this.router.getCurrentNavigation()?.extras.state;
-    console.log(state)
+
+		//const state = this.router.getCurrentNavigation()?.extras.state;
+    //console.log(state)
     this.getEventById(this.activatedRoute.snapshot.params["id"])
 
   }
